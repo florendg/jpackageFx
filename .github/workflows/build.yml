@@ -1,0 +1,19 @@
+on: push
+
+jobs:
+  build-app:
+    name: Build the application
+    runs-on: macos-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 15
+
+      - name: build
+        run: |
+          ./gradlew build
