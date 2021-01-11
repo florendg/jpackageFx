@@ -13,26 +13,63 @@ plugins {
 
 repositories {
     // Use JCenter for resolving dependencies.
+    mavenCentral()
     jcenter()
 }
 
+var currentOS = org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.getCurrentOperatingSystem()
+var platform = ""
+if (currentOS.isMacOsX) {
+    platform = "mac"
+} else if (currentOS.isLinux) {
+    platform = "linux"
+} else if (currentOS.isWindows) {
+    platform = "win"
+}
+
+var javaFXVersion = "15.0.1"
+
 dependencies {
-    // Use JUnit Jupiter API for testing.
+
+    implementation("org.openjfx:javafx-base:${javaFXVersion}:${platform}")
+    implementation("org.openjfx:javafx-controls:${javaFXVersion}:${platform}")
+    implementation("org.openjfx:javafx-graphics:${javaFXVersion}:${platform}")
+    implementation("org.openjfx:javafx-fxml:${javaFXVersion}:${platform}")
+
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.2")
-
-    // Use JUnit Jupiter Engine for testing.
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
-
-    // This dependency is used by the application.
-    implementation("com.google.guava:guava:29.0-jre")
 }
 
 application {
     // Define the main class for the application.
-    mainClass.set("com.vulture.dev.packagefx.App")
+    mainModule.set("dev.vulture.packagefx")
+    mainClass.set("dev.vulture.packagefx.App")
 }
 
-tasks.test {
-    // Use junit platform for unit tests.
-    useJUnitPlatform()
+java {
+    modularity.inferModulePath.set(true)
+    version = JavaVersion.VERSION_15
+}
+
+tasks {
+    test {
+        // Use junit platform for unit tests.
+        useJUnitPlatform()
+    }
+    task<Copy>("copyDependencies") {
+        from(configurations.default)
+        into("$buildDir/modules")
+    }
+
+    task<Exec>("package") {
+        dependsOn(listOf("build", "copyDependencies"))
+        commandLine("jpackage")
+        args(listOf(
+                "-n", "fxBuildDemo",
+                "--jlink-options","--strip-native-commands --no-man-pages --no-header-files",
+                "-p", "$buildDir/modules:$buildDir/libs",
+                "-d", "$buildDir/installer",
+                "-m", "dev.vulture.packagefx/dev.vulture.packagefx.App"))
+    }
+
 }

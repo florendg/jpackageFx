@@ -16,4 +16,5 @@ jobs:
 
       - name: build
         run: |
-          ./gradlew build
+          ./gradlew package
+
