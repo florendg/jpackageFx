@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-app:
-    name: Build the application
+    name: Release the application
     runs-on: macos-latest
 
     steps:
