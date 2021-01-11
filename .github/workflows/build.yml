@@ -16,14 +16,17 @@ jobs:
 
       - name: build
         run: |
-          ./gradlew build
-  package-app:
-    name: Package the app using jpackage
-    needs: build-app
-    runs-on: macos-latest
-
-    steps:
-      - name: package
-        run: |
           ./gradlew package
+
+      - name: release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Demo Release
+          draft: true
+          prerelease: false
 
