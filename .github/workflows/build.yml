@@ -16,5 +16,14 @@ jobs:
 
       - name: build
         run: |
+          ./gradlew build
+  package-app:
+    name: Package the app using jpackage
+    needs: build-app
+    runs-on: macos-latest
+
+    steps:
+      - name: package
+        run: |
           ./gradlew package
 
