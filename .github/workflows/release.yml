@@ -1,8 +1,7 @@
+name: Release
 on:
   push:
-    tags:
-      - 'v*' # Push events to matching v*
-
+    branches: [v0.1]
 
 jobs:
   build-app:
