@@ -1,12 +1,11 @@
+name: Release
 on:
   push:
-    tags:
-      - 'v*' # Push events to matching v*
-
+    branches: [v0.1]
 
 jobs:
   build-app:
-    name: Build the application
+    name: Release the application
     runs-on: macos-latest
 
     steps:
@@ -35,7 +34,7 @@ jobs:
 
       - name: upload
         id: upload-release-asset
-        uses: actions/upload-release@v1
+        uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
