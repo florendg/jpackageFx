@@ -1,7 +1,7 @@
 name: Release
 on:
   push:
-    branches: [v0.1]
+    branches: [v0.2]
 
 jobs:
   build-app:
