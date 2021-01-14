@@ -16,7 +16,7 @@ jobs:
 
       - name: build
         run: |
-          ./gradlew build
+          ./gradlew package
 
       - name: upload build result
         uses: actions/upload-artifact@v2
