@@ -1,7 +1,7 @@
 name: Release
 on:
   push:
-    branches: [v0.1]
+    branches: [v0.3]
 
 jobs:
   build-app:
@@ -41,6 +41,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./build/installer/fxBuildDemo-1.0.dmg
           asset_name: fxBuildDemo-1.0.dmg
+          asset_content_type: application/octet-stream
 
 
 
