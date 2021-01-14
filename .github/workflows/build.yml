@@ -22,7 +22,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: fxBuildDemo.dmg
-          path: build/installer/*.dmg
+          path: ${{ github.workspace }}/build/installer/*.dmg
 
 
 
