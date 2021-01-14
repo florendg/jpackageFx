@@ -18,5 +18,11 @@ jobs:
         run: |
           ./gradlew build
 
+      - name: upload build result
+        uses: actions/upload-artifact@v2
+        with:
+          name: fxBuildDemo.dmg
+          path: build/installer/*.dmg
+
 
 
