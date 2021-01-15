@@ -15,7 +15,7 @@ jobs:
 
   package-mac-app:
     name: Package and upload application
-    needs: [build-app]
+    needs: [build-mac-app]
     runs-on: macos-latest
 
     steps:
