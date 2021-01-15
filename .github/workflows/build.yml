@@ -13,16 +13,14 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 15
-
-      - name: build
-        run: |
-          ./gradlew package
+      - run: ./gradlew package
+      - run: mkdir staging && cp build/installer/*.dmg staging
 
       - name: upload build result
         uses: actions/upload-artifact@v2
         with:
-          name: fxBuildDemo.dmg
-          path: ${{ github.workspace }}/build/installer/*.dmg
+          name: Package
+          path: staging
 
 
 
