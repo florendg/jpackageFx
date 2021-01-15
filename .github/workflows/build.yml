@@ -1,8 +1,21 @@
 on: push
 
 jobs:
-  build-app:
+  build-mac-app:
     name: Build the application
+    runs-on: macos-11.0
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 15
+        - run: ./gradlew build
+
+  package-mac-app:
+    name: Package and upload application
+    needs: [build-app]
     runs-on: macos-latest
 
     steps:
@@ -19,7 +32,7 @@ jobs:
       - name: upload build result
         uses: actions/upload-artifact@v2
         with:
-          name: Package
+          name: FxDemoApp
           path: staging
 
 
