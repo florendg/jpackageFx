@@ -1,3 +1,4 @@
+name: build installar for supported os
 on: push
 
 jobs:
