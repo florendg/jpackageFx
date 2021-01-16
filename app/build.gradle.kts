@@ -66,8 +66,7 @@ tasks {
         commandLine("jpackage")
         args(listOf(
                 "-n", "fxBuildDemo",
-                "--jlink-options","--strip-native-commands --no-man-pages --no-header-files",
-                "-p", "$buildDir/modules:$buildDir/libs",
+                "-p", "$buildDir/modules"+File.pathSeparator+"$buildDir/libs",
                 "-d", "$buildDir/installer",
                 "-m", "dev.vulture.packagefx/dev.vulture.packagefx.App"))
     }
