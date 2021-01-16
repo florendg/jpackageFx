@@ -17,6 +17,7 @@ repositories {
     jcenter()
 }
 
+//Resolve the used operating system
 var currentOS = org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.getCurrentOperatingSystem()
 var platform = ""
 if (currentOS.isMacOsX) {
@@ -27,17 +28,12 @@ if (currentOS.isMacOsX) {
     platform = "win"
 }
 
-var javaFXVersion = "15.0.1"
+val javaFXVersion = "15.0.1"
 
 dependencies {
-
     implementation("org.openjfx:javafx-base:${javaFXVersion}:${platform}")
     implementation("org.openjfx:javafx-controls:${javaFXVersion}:${platform}")
     implementation("org.openjfx:javafx-graphics:${javaFXVersion}:${platform}")
-    implementation("org.openjfx:javafx-fxml:${javaFXVersion}:${platform}")
-
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
 
 application {
@@ -57,7 +53,7 @@ tasks {
         useJUnitPlatform()
     }
     task<Copy>("copyDependencies") {
-        from(configurations.default)
+        from(configurations.runtimeClasspath)
         into("$buildDir/modules")
     }
 

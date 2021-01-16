@@ -1,11 +1,11 @@
-name: build installar for supported os
+name: Build installar for supported os
 on: push
 
 jobs:
   build-app:
     strategy:
       matrix:
-        os: [ macos-latest,ubuntu-latest, windows-latest ]
+        os: [ macos-latest,ubuntu-20.04, windows-latest ]
     name: Build the application
     runs-on: ${{ matrix.os }}
     steps:
