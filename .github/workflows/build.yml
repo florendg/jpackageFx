@@ -1,38 +1,31 @@
 on: push
 
 jobs:
-  build-mac-app:
+  build-app:
+    strategy:
+      matrix:
+        os: [ macos-latest,ubuntu-latest,windows-latest ]
     name: Build the application
-    runs-on: macos-latest
+    runs-on: ${{ matrix.os }}
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: Setup Java
-        uses: actions/setup-java@v1
-        with:
-          java-version: 15
-      - run: ./gradlew build
-
-  package-mac-app:
-    name: Package and upload application
-    needs: [build-mac-app]
-    runs-on: macos-latest
-
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-
       - name: Setup Java
         uses: actions/setup-java@v1
         with:
           java-version: 15
       - run: ./gradlew package
-      - run: mkdir staging && cp app/build/installer/*.dmg staging
+      - run: mkdir staging && cp app/build/installer/* staging
 
+  package-app:
+    name: Package and upload application
+    needs: [ build-app ]
+    runs-on: ubuntu-latest
+    steps:
       - name: upload build result
         uses: actions/upload-artifact@v2
         with:
-          name: FxDemoApp
+          name: FxDemoApp-${{matrix.os}}
           path: staging
 
 
