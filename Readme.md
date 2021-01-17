@@ -2,7 +2,7 @@
 
 This project is created to demonstrate how to build a very simple Java FX application with only the javaFX modules 
 as none Java SE dependencies. 
-The project and usez jpackage to create an installer.
+The project and uses jpackage to create an installer.
 Using Github Actions, an installer is created for Mac, Windows and Linux.
 
 ## The Gradle build
