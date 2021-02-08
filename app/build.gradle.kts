@@ -24,6 +24,7 @@ dependencies {
     implementation("org.openjfx:javafx-base:${javaFXVersion}:${platform}")
     implementation("org.openjfx:javafx-controls:${javaFXVersion}:${platform}")
     implementation("org.openjfx:javafx-graphics:${javaFXVersion}:${platform}")
+    implementation("org.openjfx:javafx-fxml:${javaFXVersion}:${platform}")
 }
 
 application {

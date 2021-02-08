@@ -4,9 +4,9 @@
 package dev.vulture.packagefx;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -17,10 +17,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Label label = new Label("Hello FX");
-        VBox parent = new VBox();
-        parent.getChildren().add(label);
+        Parent parent = FXMLLoader.load(App.class.getResource("main.fxml"));
         Scene scene = new Scene(parent,400,200);
+        scene.getStylesheets().add("style.css");
         stage.setScene(scene);
         stage.show();
     }
