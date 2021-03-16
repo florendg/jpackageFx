@@ -18,7 +18,7 @@ if (currentOS.isMacOsX) {
     platform = "win"
 }
 
-val javaFXVersion = "15.0.1"
+val javaFXVersion = "16"
 
 dependencies {
     implementation("org.openjfx:javafx-base:${javaFXVersion}:${platform}")
@@ -35,7 +35,7 @@ application {
 
 java {
     modularity.inferModulePath.set(true)
-    version = JavaVersion.VERSION_15
+    version = JavaVersion.VERSION_16
 }
 
 tasks {
