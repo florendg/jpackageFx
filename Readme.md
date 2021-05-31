@@ -15,7 +15,7 @@ Using the discovered operating system, the dependencies for javaFX are resolved.
 
 ## jpackage
 
-Jpackage is a new packaging tool added as incubator project in Java 15. The tool uses jlink to create a dedicated runtime
+Jpackage is a now part of Java 16. The tool uses jlink to create a dedicated runtime
 for the application. With this dedicated image, an installer is created for the OS on which the build script is executed.
 
 ## Github Actions
