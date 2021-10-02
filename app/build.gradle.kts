@@ -18,7 +18,13 @@ if (currentOS.isMacOsX) {
     platform = "win"
 }
 
-val javaFXVersion = "16"
+val javaFXVersion = "17.0.0.1"
+val appClassName = "dev.vulture.packagefx.App"
+val appModuleName = "dev.vulture.packagefx"
+
+val compiler = javaToolchains.compilerFor {
+    languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_17.majorVersion))
+}
 
 dependencies {
     implementation("org.openjfx:javafx-base:${javaFXVersion}:${platform}")
@@ -30,12 +36,17 @@ dependencies {
 application {
     // Define the main class for the application.
     mainModule.set("dev.vulture.packagefx")
-    mainClass.set("dev.vulture.packagefx.App")
+    mainClass.set(appClassName)
+    if(platform.equals("mac")) {
+        applicationDefaultJvmArgs = listOf("-Dsun.java2d.metal=true")
+    }
 }
 
 java {
     modularity.inferModulePath.set(true)
-    version = JavaVersion.VERSION_16
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
 }
 
 tasks {
@@ -46,12 +57,13 @@ tasks {
 
     task<Exec>("package") {
         dependsOn(listOf("build", "copyDependencies"))
-        commandLine("jpackage")
+        val jdkHome = compiler.get().metadata.installationPath.asFile.absolutePath
+        commandLine("${jdkHome}/bin/jpackage")
         args(listOf(
                 "-n", "fxBuildDemo",
                 "-p", "$buildDir/modules"+File.pathSeparator+"$buildDir/libs",
                 "-d", "$buildDir/installer",
-                "-m", "dev.vulture.packagefx/dev.vulture.packagefx.App"))
+                "-m", "${appModuleName}/${appClassName}"))
     }
 
 }
