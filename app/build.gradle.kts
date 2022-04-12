@@ -45,7 +45,6 @@ application {
 java {
     modularity.inferModulePath.set(true)
     toolchain {
-        vendor.set(JvmVendorSpec.ORACLE)
         languageVersion.set(JavaLanguageVersion.of(18))
     }
 }
