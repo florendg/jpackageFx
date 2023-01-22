@@ -23,7 +23,7 @@ val appClassName = "dev.vulture.packagefx.App"
 val appModuleName = "dev.vulture.packagefx"
 
 val compiler = javaToolchains.compilerFor {
-    languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_18.majorVersion))
+    languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_19.majorVersion))
 }
 
 dependencies {
@@ -45,7 +45,7 @@ application {
 java {
     modularity.inferModulePath.set(true)
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(18))
+        languageVersion.set(JavaLanguageVersion.of(19))
     }
 }
 
