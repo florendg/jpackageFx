@@ -18,7 +18,7 @@ if (currentOS.isMacOsX) {
     platform = "win"
 }
 
-val javaFXVersion = "18"
+val javaFXVersion = "19"
 val appClassName = "dev.vulture.packagefx.App"
 val appModuleName = "dev.vulture.packagefx"
 
