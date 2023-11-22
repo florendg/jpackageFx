@@ -18,12 +18,12 @@ if (currentOS.isMacOsX) {
     platform = "win"
 }
 
-val javaFXVersion = "19"
+val javaFXVersion = "21"
 val appClassName = "dev.vulture.packagefx.App"
 val appModuleName = "dev.vulture.packagefx"
 
 val compiler = javaToolchains.compilerFor {
-    languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_19.majorVersion))
+    languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_21.majorVersion))
 }
 
 dependencies {
