@@ -5,7 +5,7 @@ jobs:
   build-app:
     strategy:
       matrix:
-        os: [ macos-latest,ubuntu-20.04, windows-latest ]
+        os: [ macos-latest,ubuntu-latest, windows-latest ]
     name: Build the application
     runs-on: ${{ matrix.os }}
     steps:
@@ -14,7 +14,7 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v1
         with:
-          java-version: 19
+          java-version: 20
       - run: ./gradlew package
       - run: mkdir staging && cp app/build/installer/* staging
       - name: upload build result
