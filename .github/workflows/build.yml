@@ -10,16 +10,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Setup Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
-          java-version: '20'
+          java-version: '23'
           distribution: 'temurin'
       - run: ./gradlew package
       - run: mkdir staging && cp app/build/installer/* staging
       - name: upload build result
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: FxDemoApp-${{matrix.os}}
           path: staging
