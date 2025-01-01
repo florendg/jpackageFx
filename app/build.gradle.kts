@@ -18,7 +18,7 @@ if (currentOS.isMacOsX) {
     platform = "win"
 }
 
-val javaFXVersion = "21"
+val javaFXVersion = "23"
 val appClassName = "dev.vulture.packagefx.App"
 val appModuleName = "dev.vulture.packagefx"
 
@@ -45,7 +45,7 @@ application {
 java {
     modularity.inferModulePath.set(true)
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(19))
+        languageVersion.set(JavaLanguageVersion.of(23))
     }
 }
 

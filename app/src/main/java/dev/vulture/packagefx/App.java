@@ -19,7 +19,6 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         Parent parent = FXMLLoader.load(App.class.getResource("main.fxml"));
         Scene scene = new Scene(parent,400,200);
-        //scene.getStylesheets().add("style.css");
         stage.setScene(scene);
         stage.show();
     }
