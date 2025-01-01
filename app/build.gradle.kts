@@ -23,7 +23,7 @@ val appClassName = "dev.vulture.packagefx.App"
 val appModuleName = "dev.vulture.packagefx"
 
 val compiler = javaToolchains.compilerFor {
-    languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_21.majorVersion))
+    languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_23.majorVersion))
 }
 
 dependencies {
